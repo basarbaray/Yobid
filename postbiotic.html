@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YoBid | Postbiotic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    :root {
+      --purple: #d04eff;
+      --orange: #ff8c2f;
+      --red: #ff3045;
+      --text-dark: #222;
+    }
+    body {
+      background: #fff7f9;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background-color: rgba(191, 239, 255, 0.85);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.8rem 3rem; z-index: 1000;
+    }
+    nav .logo img { height: 70px; width: auto; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a {
+      text-decoration: none; font-weight: 600; color: var(--purple);
+      border-radius: 40px; padding: 0.6rem 1.2rem; transition: 0.3s;
+    }
+    nav a:hover {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      color: white; box-shadow: 0 0 15px rgba(255,0,72,0.3);
+    }
+
+    /* CONTENT */
+    main {
+      margin-top: 8rem;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 3rem 2rem;
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, var(--purple), var(--orange), var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .highlight {
+      color: var(--purple);
+      font-weight: 600;
+    }
+
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .cta:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 3rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 2rem 1.5rem; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo"><img src="Yobid Logo.png" alt="YoBid Logo"></div>
+    <ul>
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="index.html#products">Ürünler</a></li>
+      <li><a href="index.html#contact">İletişim</a></li>
+      <li><a href="postbiotic.html">Postbiotic</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Postbiotic Nedir?</h1>
+    <p>
+      <span class="highlight">Postbiotikler</span>, probiyotiklerin fermente edilmesiyle oluşan yararlı bileşenlerdir.  
+      Vücudun doğal savunmasını destekler, sindirim sistemine katkı sağlar ve genel sağlığı iyileştirir.
+    </p>
+    <p>
+      YoBid ürünlerinde bulunan postbiotikler, her lokmada hem lezzet hem de <span class="highlight">doğal denge</span> sunar.  
+      Sağlık artık sadece bir tat değil, bir yaşam tarzı!
+    </p>
+    <a href="index.html" class="cta">Ana Sayfaya Dön</a>
+  </main>
+
+  <footer>© 2025 Yobid | Postbiotic Bilgilendirme Sayfası 💜🧡❤️</footer>
+
+</body>
+</html>
