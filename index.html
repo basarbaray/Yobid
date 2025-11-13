@@ -298,71 +298,93 @@
   <footer>© 2025 YoBid – Doğal Yoğurt Kaplı Meyve Küpleri 💜🧡❤️</footer>
 
   <!-- POPUPS -->
-  <div class="popup" id="popupCilek">
-    <div class="popup-content">
-      <h3>YoBid Çilek</h3>
-      <p>Taze çileklerle yapılır. Her kaşıkta doğallık ve mutluluk!</p>
-      <button onclick="closePopup('popupCilek')">Kapat</button>
-    </div>
-  </div>
-
-  <div class="popup" id="popupMango">
-    <div class="popup-content">
-      <h3>YoBid Şeftali Mango</h3>
-      <p>Egzotik, ferahlatıcı ve mükemmel dengeli bir lezzet karışımı.</p>
-      <button onclick="closePopup('popupMango')">Kapat</button>
-    </div>
-  </div>
-
-  <div class="popup" id="popupBerry">
-    <div class="popup-content">
-      <h3>YoBid Orman Meyveleri</h3>
-      <p>Ormanın tüm enerjisi bir kapta! Her kaşıkta tazelik.</p>
-      <button onclick="closePopup('popupBerry')">Kapat</button>
-    </div>
-  </div>
-
   <div class="popup" id="contactForm">
-    <div class="popup-content">
+    <div class="popup" id="kvkkPopup">
+  <div class="popup-content" style="max-width:500 px;" onclick="event.stopPropagation()">
+    <h3>KVKK Bildirimi</h3>
+    <p style="font-size:0.95 rem; line-height:1.5; color:#444;">
+      Kişisel verileriniz 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca 
+      2B Gıda Ve İçecek tarafından korunmaktadır.  
+      Bu form aracılığıyla paylaştığınız bilgiler yalnızca tarafınıza geri dönüş sağlanması amacıyla 
+      işlenecek olup, üçüncü kişilerle paylaşılmayacaktır.  
+      KVKK kapsamında dilediğiniz zaman verilerinizin silinmesini veya düzeltilmesini talep edebilirsiniz.
+    </p>
+    <button onclick="closePopup('kvkkPopup')" style="background:#ddd;color:#333;margin-top:1 rem;">Kapat</button>
+  </div>
+</div>
+    <div class="popup-content" onclick="event.stopPropagation()">
       <h3>İletişim Formu</h3>
       <input type="email" id="emailInput" placeholder="E-posta adresiniz" required>
       <textarea id="messageInput" placeholder="Mesajınızı buraya yazın..."></textarea>
+      
+  <div style="text-align:left; font-size:0.9 rem; margin-top:0.8 rem;">
+    <label>
+      <input type="checkbox" id="kvkkCheckbox" required>
+      <span>
+        KVKK kapsamında 
+        <a href="#" onclick="openPopup('kvkkPopup')" style="color:var(--purple); text-decoration:underline;">
+          kişisel verilerimin işlenmesini
+        </a> 
+      onaylıyorum.
+      </span>
+    </label>
+  </div>
+
       <button onclick="sendMessage()">Gönder</button>
+      <button onclick="closePopup('contactForm')" 
+              style="background:#ddd;color:#333;margin-top:0.6 rem;">Kapat</button>
+
       <div class="message-sent" id="sentMessage">Mesajınız gönderildi 💌</div>
     </div>
   </div>
 
   <script>
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-
+    // Open any popup
     function openPopup(id) {
-      document.getElementById(id).style.display = 'flex';
+      const popup = document.getElementById(id);
+      popup.style.display = 'flex';
+      // Allow closing by clicking outside
+      popup.onclick = () => closePopup(id);
     }
 
+    // Close popup
     function closePopup(id) {
       document.getElementById(id).style.display = 'none';
     }
 
+    // Open contact form
     function openForm() {
       document.getElementById('contactForm').style.display = 'flex';
     }
 
+    // Send message with validation
     function sendMessage() {
-      const msg = document.getElementById('messageInput').value;
-      const email = document.getElementById('emailInput').value;
-      if (msg && email) {
-        document.getElementById('sentMessage').style.display = 'block';
-        setTimeout(() => {
-          closePopup('contactForm');
-          document.getElementById('sentMessage').style.display = 'none';
-          document.getElementById('messageInput').value = '';
-          document.getElementById('emailInput').value = '';
-        }, 2000);
-      } else {
+      const email = document.getElementById('emailInput').value.trim();
+      const msg = document.getElementById('messageInput').value.trim();
+      const kvkk = document.getElementById('kvkkCheckbox').checked;
+
+      if (!email || !msg) {
         alert('Lütfen e-posta ve mesajınızı girin.');
+        return;
       }
+      if (!kvkk) {
+        alert('Lütfen KVKK onay kutusunu işaretleyin.');
+        return;
+      }
+
+      document.getElementById('sentMessage').style.display = 'block';
+      setTimeout(() => {
+        closePopup('contactForm');
+        document.getElementById('sentMessage').style.display = 'none';
+        document.getElementById('messageInput').value = '';
+        document.getElementById('emailInput').value = '';
+        document.getElementById('kvkkCheckbox').checked = false;
+      }, 2000);
+    }
+
+    // Smooth scroll for hero button
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
