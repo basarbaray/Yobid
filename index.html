@@ -1,304 +1,171 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YoBid</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YoBid</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    html,body{scroll-behavior:smooth;background:#fff;overflow-x:hidden}
 
-html,body{
-  scroll-behavior:smooth;
-  background:#fff;
-  overflow-x:hidden;
-}
+    :root{
+      --purple:#d04eff;
+      --orange:#ff8c2f;
+      --red:#ff3045;
+      --cream:#fff7f9;
+      --text-dark:#1f1f1f;
+      --text-light:#555;
+    }
 
-:root{
-  --purple:#d04eff;
-  --orange:#ff8c2f;
-  --red:#ff3045;
-  --text-dark:#1f1f1f;
-}
+    /* ================= NAVBAR ================= */
+    nav{
+      position:fixed;top:0;left:0;width:100%;
+      background:rgba(191,239,255,.85);
+      backdrop-filter:blur(12px);
+      display:flex;justify-content:space-between;align-items:center;
+      padding:.8rem 3rem;z-index:1000
+    }
+    nav img{height:70px}
+    nav ul{display:flex;gap:2rem;list-style:none}
+    nav a{text-decoration:none;font-weight:600;color:var(--purple);padding:.6rem 1.2rem;border-radius:40px}
+    nav a:hover{background:linear-gradient(135deg,var(--orange),var(--red));color:#fff}
 
-/* ================= NAVBAR ================= */
-nav{
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  background:rgba(191,239,255,.85);
-  backdrop-filter:blur(12px);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:.8rem 3rem;
-  z-index:1000;
-}
+    nav a[href="postbiotic.html"]{
+      background:linear-gradient(135deg,#ff7b00,#ff0066);
+      color:#fff;
+    }
 
-nav .logo img{
-  height:70px;
-}
+    /* ================= HERO ================= */
+    .hero{
+      height:100vh;padding-top:6rem;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;position:relative
+    }
 
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:2rem;
-}
+    .hero-bg{
+      position:absolute;inset:0;
+      background:url("Yobid Arkaplan başlangıç.jpeg") no-repeat center/cover;
+      z-index:-1
+    }
 
-nav a{
-  text-decoration:none;
-  font-weight:600;
-  color:var(--purple);
-  padding:.6rem 1.2rem;
-  border-radius:40px;
-  transition:.3s;
-}
+    .hero h1{font-size:3.2rem;color:var(--purple)}
+    .hero p{max-width:600px;margin:1rem auto 2rem;font-size:1.2rem}
+    .hero-images{display:flex;gap:2rem;flex-wrap:wrap}
+    .hero-images img{width:300px;border-radius:40px;transition:.4s}
+    .hero-images img:hover{transform:scale(1.05)}
 
-nav a:hover{
-  background:linear-gradient(135deg,var(--orange),var(--red));
-  color:#fff;
-}
+    .cta-btn{
+      margin-top:2.5rem;padding:1rem 2.4rem;
+      border:none;border-radius:50px;
+      background:linear-gradient(135deg,var(--orange),var(--red));
+      color:#fff;font-weight:600;cursor:pointer
+    }
 
-/* Postbiotic sabit vurgulu */
-nav a[href="postbiotic.html"]{
-  background:linear-gradient(135deg,#ff7b00,#ff0066);
-  color:#fff;
-}
+    /* ================= PRODUCTS (DESKTOP) ================= */
+    .products{
+      padding:6rem 2rem;
+      background:url("Yobid Arkaplan Orta 1.jpeg") no-repeat center/cover;
+      text-align:center
+    }
 
-/* ================= HERO ================= */
-.hero{
-  height:100vh;
-  padding-top:6rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-}
+    .products h2{
+      font-size:2.4rem;margin-bottom:3rem;
+      background:linear-gradient(135deg,var(--purple),var(--orange),var(--red));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent
+    }
 
-.hero-bg{
-  position:absolute;
-  inset:0;
-  background:url("Yobid Arkaplan başlangıç.jpeg") no-repeat center/cover;
-  opacity:.95;
-  z-index:-1;
-}
+    .product{
+      display:flex;gap:2rem;
+      align-items:center;justify-content:center;
+      margin-bottom:4rem;flex-wrap:wrap
+    }
+    .product:nth-child(even){flex-direction:row-reverse}
+    .product img{width:320px;border-radius:40px}
+    .product-text{max-width:460px;text-align:left}
 
-.hero h1{
-  font-size:3.2rem;
-  color:var(--purple);
-}
+    /* ================= MOBILE PRODUCTS (LEBBY STYLE) ================= */
+    .mobile-products{
+      display:none;
+      padding:4rem 1.2rem;
+      background:#fff;
+      text-align:center
+    }
 
-.hero p{
-  max-width:600px;
-  margin:1rem auto 2rem;
-  font-size:1.2rem;
-}
+    .mobile-products h2{
+      font-size:2rem;
+      margin-bottom:2rem;
+      color:var(--purple)
+    }
 
-.hero-images{
-  display:flex;
-  gap:2rem;
-  flex-wrap:wrap;
-}
+    .mobile-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.2rem
+    }
 
-.hero-images img{
-  width:300px;
-  border-radius:40px;
-  transition:.4s;
-}
+    .mobile-card{
+      background:#fff;
+      border-radius:26px;
+      padding:1.4rem 1rem;
+      box-shadow:0 10px 25px rgba(0,0,0,.08);
+      transition:.3s
+    }
 
-.hero-images img:hover{
-  transform:scale(1.05);
-}
+    .mobile-card img{
+      width:100%;
+      max-width:110px;
+      margin-bottom:.6rem
+    }
 
-.cta-btn{
-  margin-top:2.5rem;
-  padding:1rem 2.4rem;
-  border:none;
-  border-radius:50px;
-  background:linear-gradient(135deg,var(--orange),var(--red));
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-}
+    .mobile-icon{font-size:1.6rem;margin-bottom:.3rem}
 
-/* ================= PRODUCTS ================= */
-.products{
-  padding:6rem 2rem;
-  background:url("Yobid Arkaplan Orta 1.jpeg") no-repeat center/cover;
-  text-align:center;
-}
+    .card-strawberry{background:linear-gradient(135deg,#ffe6ef,#fff)}
+    .card-mango{background:linear-gradient(135deg,#fff1cc,#fff)}
+    .card-berry{background:linear-gradient(135deg,#efe6ff,#fff)}
 
-.products h2{
-  font-size:2.4rem;
-  margin-bottom:3rem;
-  background:linear-gradient(135deg,var(--purple),var(--orange),var(--red));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+    /* ================= CONTACT ================= */
+    .contact{
+      padding:6rem 2rem;
+      background:url("Yobid Arkaplan Bitiş.jpeg") no-repeat center/cover;
+      text-align:center;color:#fff
+    }
 
-.product{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:2rem;
-  margin-bottom:4rem;
-  flex-wrap:wrap;
-}
+    .contact button{
+      margin-top:2rem;padding:1rem 2.5rem;
+      border:none;border-radius:40px;
+      background:#fff;color:var(--purple);
+      font-weight:600;cursor:pointer
+    }
 
-.product:nth-child(even){
-  flex-direction:row-reverse;
-}
+    /* ================= FOOTER ================= */
+    footer{
+      padding:3rem 1rem;
+      text-align:center;font-weight:600;
+      background:url("Krem Arka Plan.jpeg") no-repeat center/cover
+    }
 
-.product img{
-  width:320px;
-  border-radius:40px;
-}
+    /* ================= MOBILE SWITCH ================= */
+    @media(max-width:768px){
+      nav{flex-direction:column;padding:.8rem 1rem}
+      .hero{height:auto;padding-bottom:3rem}
+      .hero h1{font-size:2.1rem}
+      .hero-images img{width:220px}
 
-.product-text{
-  max-width:460px;
-  text-align:left;
-}
-
-.product-text h3{
-  font-size:1.8rem;
-  margin-bottom:.8rem;
-  background:linear-gradient(135deg,var(--purple),var(--red));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.product-text button{
-  margin-top:1rem;
-  padding:.8rem 1.8rem;
-  border:none;
-  border-radius:40px;
-  background:linear-gradient(135deg,var(--purple),var(--orange));
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* ================= CONTACT ================= */
-.contact{
-  padding:6rem 2rem;
-  background:url("Yobid Arkaplan Bitiş.jpeg") no-repeat center/cover;
-  text-align:center;
-  color:#fff;
-}
-
-.contact h2{
-  font-size:2.4rem;
-  color:var(--purple);
-}
-
-.contact button{
-  margin-top:2rem;
-  padding:1rem 2.5rem;
-  border:none;
-  border-radius:40px;
-  background:#fff;
-  color:var(--purple);
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* ================= POPUP ================= */
-.popup{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(10px);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-
-.popup-content{
-  background:#fff;
-  padding:2rem;
-  border-radius:20px;
-  max-width:420px;
-  width:90%;
-  text-align:center;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  padding:3rem 1rem;
-  text-align:center;
-  font-weight:600;
-  background:url("Krem Arka Plan.jpeg") no-repeat center/cover;
-}
-
-/* ================= MOBILE ================= */
-@media(max-width:768px){
-
-  nav{
-    flex-direction:column;
-    padding:.8rem 1rem;
-  }
-
-  nav ul{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:.6rem;
-  }
-
-  .hero{
-    height:auto;
-    padding-top:8rem;
-    padding-bottom:3rem;
-  }
-
-  .hero h1{
-    font-size:2.1rem;
-  }
-
-  .hero-images img{
-    width:220px;
-  }
-
-  .product{
-    flex-direction:column !important;
-    text-align:center;
-  }
-
-  .product-text{
-    text-align:center;
-  }
-
-  .product img{
-    width:260px;
-  }
-
-  .popup-content{
-    max-width:360px;
-  }
-}
-
-@media(max-width:480px){
-  .hero h1{font-size:1.8rem;}
-  .hero-images img{width:190px;}
-}
-</style>
+      .products{display:none}
+      .mobile-products{display:block}
+    }
+  </style>
 </head>
 
 <body>
 
 <nav>
-  <div class="logo">
-    <img src="yobid-logo.png">
-  </div>
+  <img src="yobid-logo.png">
   <ul>
     <li><a href="#hero">Ana Sayfa</a></li>
     <li><a href="#products">Ürünler</a></li>
@@ -310,17 +177,20 @@ footer{
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <h1>Doğal Yoğurt Kaplı Meyve Küpleri</h1>
-  <p>YoBid – doğallığı ve enerjiyi bir araya getirir</p>
+  <p>YoBid – doğallığı, tazeliği ve enerjiyi bir araya getirir</p>
+
   <div class="hero-images">
     <img src="yobid-cilek.jpeg">
     <img src="yobid-seftali-mango.jpeg">
     <img src="yobid-orman-meyveleri.jpeg">
   </div>
+
   <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
     Ürünleri Keşfet
   </button>
 </section>
 
+<!-- DESKTOP PRODUCTS -->
 <section class="products" id="products">
   <h2>Lezzet Üçlüsü</h2>
 
@@ -328,7 +198,7 @@ footer{
     <img src="yobid-cilek.jpeg">
     <div class="product-text">
       <h3>YoBid Çilek</h3>
-      <p>Kremsi, ferahlatıcı ve doğal</p>
+      <p>Kremsi dokusu ve taze çilek aroması</p>
     </div>
   </div>
 
@@ -336,7 +206,7 @@ footer{
     <img src="yobid-seftali-mango.jpeg">
     <div class="product-text">
       <h3>YoBid Şeftali Mango</h3>
-      <p>Tropikal ferahlık</p>
+      <p>Tropikal ve ferahlatıcı</p>
     </div>
   </div>
 
@@ -349,25 +219,39 @@ footer{
   </div>
 </section>
 
+<!-- MOBILE PRODUCTS -->
+<section class="mobile-products">
+  <h2>Lezzetlerimiz</h2>
+
+  <div class="mobile-grid">
+    <div class="mobile-card card-strawberry">
+      <div class="mobile-icon">🍓</div>
+      <img src="yobid-cilek.jpeg">
+      <h3>YoBid Çilek</h3>
+    </div>
+
+    <div class="mobile-card card-mango">
+      <div class="mobile-icon">🥭</div>
+      <img src="yobid-seftali-mango.jpeg">
+      <h3>Şeftali Mango</h3>
+    </div>
+
+    <div class="mobile-card card-berry">
+      <div class="mobile-icon">🫐</div>
+      <img src="yobid-orman-meyveleri.jpeg">
+      <h3>Orman Meyveleri</h3>
+    </div>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <h2>Bizimle İletişime Geç</h2>
-  <button onclick="document.getElementById('contactForm').style.display='flex'">
-    İletişime Geç
-  </button>
+  <button>İletişim</button>
 </section>
 
 <footer>
 © 2025 YoBid – Doğal Yoğurt Kaplı Meyve Küpleri 💜
 </footer>
-
-<div class="popup" id="contactForm" onclick="this.style.display='none'">
-  <div class="popup-content" onclick="event.stopPropagation()">
-    <h3>İletişim</h3>
-    <input type="email" placeholder="E-posta" style="width:100%;margin:.6rem 0;padding:.6rem;">
-    <textarea placeholder="Mesaj" style="width:100%;height:100px;padding:.6rem;"></textarea>
-    <button style="margin-top:1rem">Gönder</button>
-  </div>
-</div>
 
 </body>
 </html>
