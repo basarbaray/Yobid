@@ -239,6 +239,61 @@
       .product{flex-direction:column !important;text-align:center;}
       .hero-images img { width: 250px; }
     }
+    /* ================= MOBILE NAVBAR ================= */
+.hamburger{
+  display:none;
+  font-size:2rem;
+  cursor:pointer;
+  color:var(--purple);
+}
+
+/* Açılan mobil menü */
+.mobile-menu{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:999;
+  padding:4rem 2rem;
+}
+
+.mobile-menu a{
+  display:block;
+  margin:1.5rem 0;
+  font-size:1.4rem;
+  text-decoration:none;
+  color:var(--purple);
+  font-weight:600;
+}
+
+/* ================= MOBILE FIX ================= */
+@media(max-width:768px){
+
+  /* desktop menüyü gizle */
+  nav ul{
+    display:none;
+  }
+
+  /* hamburger göster */
+  .hamburger{
+    display:block;
+  }
+
+  /* HERO görselleri mobile'da kaldır */
+  .hero-images{
+    display:none;
+  }
+
+  /* ürünleri alt alta getir */
+  .product{
+    flex-direction:column !important;
+    text-align:center;
+  }
+
+  .product-text{
+    text-align:center;
+  }
+}
   </style>
 </head>
 
@@ -249,12 +304,21 @@
       <img src="yobid-logo.png" alt="YoBid Logo">
     </div>
     <ul>
+      <!-- MOBILE HAMBURGER -->
+    <div class="hamburger" onclick="openMobileMenu()">☰</div>
       <li><a href="#hero">Ana Sayfa</a></li>
       <li><a href="#products">Ürünler</a></li>
       <li><a href="#contact">İletişim</a></li>
       <li><a href="postbiotic.html">Postbiotic</a></li>
     </ul>
   </nav>
+  <!-- MOBILE MENU PANEL -->
+   <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero" onclick="closeMobileMenu()">Ana Sayfa</a>
+    <a href="#products" onclick="closeMobileMenu()">Ürünler</a>
+    <a href="#contact" onclick="closeMobileMenu()">İletişim</a>
+    <a href="postbiotic.html">Postbiotic</a>
+   </div>
 
   <!-- HERO -->
   <section class="hero" id="hero">
@@ -402,6 +466,14 @@
     // Smooth scroll for hero button
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    <script>
+  function openMobileMenu(){
+    document.getElementById("mobileMenu").style.display = "block";
+    }
+
+  function closeMobileMenu(){
+    document.getElementById("mobileMenu").style.display = "none";
     }
   </script>
 </body>
