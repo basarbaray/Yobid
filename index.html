@@ -1,408 +1,373 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YoBid</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { 
-      margin: 0; padding: 0; box-sizing: border-box; 
-      font-family: 'Poppins', sans-serif;
-    }
-    html, body { 
-      scroll-behavior: smooth; 
-      background: #fff; 
-      overflow-x: hidden; /* ✅ fix right scroll */
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YoBid</title>
 
-    :root {
-      --purple: #d04eff;
-      --orange: #ff8c2f;
-      --red: #ff3045;
-      --cream: #fff7f9;
-      --text-dark: #1f1f1f;
-      --text-light: #555;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    /* NAVBAR */
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%;
-      background-color: rgba(191, 239, 255, 0.85);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.8rem 3rem; z-index: 1000;
-    }
-    nav .logo img {
-      height: 70px; width: auto;
-    }
-    nav ul { list-style: none; display: flex; gap: 2rem; }
-    nav a {
-      text-decoration: none; font-weight: 600; color: var(--purple);
-      border-radius: 40px; padding: 0.6rem 1.2rem; transition: 0.3s;
-    }
-    nav a:hover {
-      background: linear-gradient(135deg, var(--orange), var(--red));
-      color: white; box-shadow: 0 0 15px rgba(255,0,72,0.3);
-    }
-    /* Navbar'da Postbiotic linkini sabit vurgulu yapar */
-    nav a[href="postbiotic.html"] {
-      background: linear-gradient(135deg, #ff7b00, #ff0066);
-      color: white !important;
-      border-radius: 20px;
-      padding: 8px 16px;
-      box-shadow: 0 0 15px rgba(255, 77, 0, 0.4);
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
-    /* Hover olunca daha yumuşak parlasın */
-    nav a[href="postbiotic.html"]:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 77, 0, 0.6);
-    }
+html,body{
+  scroll-behavior:smooth;
+  background:#fff;
+  overflow-x:hidden;
+}
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center;
-      position: relative; overflow: hidden; 
-      padding-top: 5rem;
-    }
+:root{
+  --purple:#d04eff;
+  --orange:#ff8c2f;
+  --red:#ff3045;
+  --text-dark:#1f1f1f;
+}
 
-    .hero-bg {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: url(Yobid\ Arkaplan\ başlangıç.jpeg) no-repeat top/cover;
-      opacity: 0.95; z-index: 0;
-    }
+/* ================= NAVBAR ================= */
+nav{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  background:rgba(191,239,255,.85);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.8rem 3rem;
+  z-index:1000;
+}
 
-    @keyframes wave { 
-      0% {transform: scale(1);} 
-      100% {transform: scale(1.1);} 
-    }
+nav .logo img{
+  height:70px;
+}
 
-    /* 🫧 Floating creamy bubbles */
-    .bubble {
-      position: absolute;
-      background: linear-gradient(135deg, var(--purple), var(--orange), var(--red));
-      border-radius: 50%;
-      animation: float 10s infinite ease-in-out;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-    .bubble:nth-child(3n+1) { width: 60px; height: 60px; left: 10%; bottom: 10%; animation-delay: 0s; }
-    .bubble:nth-child(3n+2) { width: 40px; height: 40px; left: 50%; bottom: 15%; animation-delay: 2s; }
-    .bubble:nth-child(3n+3) { width: 70px; height: 70px; left: 80%; top: 10%; animation-delay: 4s; }
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:2rem;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 0.6; }
-      50% { transform: translateY(-60px) scale(1.1); opacity: 1; }
-      100% { transform: translateY(0) scale(1); opacity: 0.6; }
-    }
+nav a{
+  text-decoration:none;
+  font-weight:600;
+  color:var(--purple);
+  padding:.6rem 1.2rem;
+  border-radius:40px;
+  transition:.3s;
+}
 
-    .hero h1 {
-      font-size: 3.2rem; color: var(--purple); z-index: 2;
-      animation: fadeUp 1s ease forwards;
-    }
-    .hero p {
-      margin: 1rem auto 2rem; font-size: 1.2rem;
-      max-width: 600px; color: var(--text-dark);
-      animation: fadeUp 1.4s ease forwards; z-index: 2;
-    }
-    .hero-images {
-      display: flex; justify-content: center; gap: 2rem; z-index: 2; flex-wrap: wrap;
-    }
-    .hero-images img {
-      width: 300px; border-radius: 40px; transition: 0.4s;
-    }
-    .hero-images img:hover { transform: scale(1.05) rotate(2deg); }
+nav a:hover{
+  background:linear-gradient(135deg,var(--orange),var(--red));
+  color:#fff;
+}
 
-    .cta-btn {
-      background: linear-gradient(135deg, var(--orange), var(--red));
-      border: none; color: white; border-radius: 50px;
-      padding: 1rem 2.4rem; font-size: 1.1rem; font-weight: 600;
-      cursor: pointer; box-shadow: 0 8px 25px rgba(255,0,72,0.3);
-      transition: 0.3s; position: relative; overflow: hidden; z-index: 2;
-      margin-top: 2.8rem;
-    }
-    .cta-btn:hover { transform: scale(1.05); }
+/* Postbiotic sabit vurgulu */
+nav a[href="postbiotic.html"]{
+  background:linear-gradient(135deg,#ff7b00,#ff0066);
+  color:#fff;
+}
 
-    @keyframes fadeUp { 
-      from {opacity:0; transform:translateY(20px);} 
-      to {opacity:1; transform:translateY(0);} 
-    }
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  padding-top:6rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
 
-    /* PRODUCTS */
-    .products { 
-      background: url(Yobid\ Arkaplan\ Orta\ 1.jpeg) no-repeat center/cover;
-      padding: 6rem 2rem; text-align: center; color: var(--text-dark);
-      position: relative; z-index: 0;
-      overflow: hidden;
-    }
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:url("Yobid Arkaplan başlangıç.jpeg") no-repeat center/cover;
+  opacity:.95;
+  z-index:-1;
+}
 
-    .products h2 {
-      font-size: 2.4rem;
-      background: linear-gradient(135deg, var(--purple), var(--orange), var(--red));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 3rem;
-    }
+.hero h1{
+  font-size:3.2rem;
+  color:var(--purple);
+}
 
-    .product {
-      display: flex; justify-content: center; align-items: center;
-      gap: 2rem; flex-wrap: wrap; margin-bottom: 5rem;
-    }
-    .product:nth-child(even) { flex-direction: row-reverse; }
-    .product img {
-      width: 320px; border-radius: 40px;
-    }
-    .product-text { max-width: 460px; text-align: left; }
-    .product-text h3 {
-      font-size: 1.8rem;
-      background: linear-gradient(135deg, var(--purple), var(--red));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 0.8rem;
-    }
-    .product-text p { font-size: 1rem; margin-bottom: 1rem; }
-    .product-text button {
-      background: linear-gradient(135deg, var(--purple), var(--orange));
-      border: none; color: white; border-radius: 40px;
-      padding: 0.8rem 1.8rem; font-weight: 600; cursor: pointer;
-      transition: 0.3s; box-shadow: 0 6px 20px rgba(208,78,255,0.3);
-    }
-    .product-text button:hover { transform: scale(1.05); }
+.hero p{
+  max-width:600px;
+  margin:1rem auto 2rem;
+  font-size:1.2rem;
+}
 
-    /* CONTACT */
-    .contact {
-      background:url(Yobid\ Arkaplan\ Bitiş.jpeg) no-repeat center/cover; 
-      position: relative; 
-      color: #fff; text-align: center; padding: 6rem 2rem;
-      overflow: hidden;
-    }
+.hero-images{
+  display:flex;
+  gap:2rem;
+  flex-wrap:wrap;
+}
 
-    .contact h2 {
-      font-size: 2.4rem; margin-bottom: 1rem; color: var(--purple);
-    }
-    .contact p { margin-bottom: 2rem; font-size: 1.1rem; color: #eee; }
+.hero-images img{
+  width:300px;
+  border-radius:40px;
+  transition:.4s;
+}
 
-    .contact button {
-      background: white; color: var(--purple); border: none;
-      border-radius: 40px; padding: 1rem 2.5rem; font-weight: 600;
-      cursor: pointer; box-shadow: 0 8px 25px rgba(255,255,255,0.3);
-      transition: 0.3s;
-    }
-    .contact button:hover { transform: scale(1.05); }
+.hero-images img:hover{
+  transform:scale(1.05);
+}
 
-    /* POPUPS */
-    .popup {
-      display: none; position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
-      justify-content: center; align-items: center; z-index: 999;
-    }
-    .popup-content {
-      background: white; border-radius: 20px; padding: 2rem;
-      max-width: 420px; text-align: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    }
-    .popup-content h3 { color: var(--purple); margin-bottom: 1rem; }
-    .popup-content input, .popup-content textarea {
-      width: 100%; padding: 0.8rem; border: 1px solid #ddd;
-      border-radius: 10px; margin-top: 0.6rem;
-    }
-    .popup-content textarea { height: 100px; resize: none; }
-    .popup-content button {
-      background: linear-gradient(135deg, var(--orange), var(--red));
-      border: none; color: white; border-radius: 25px;
-      padding: 0.8rem 1.8rem; margin-top: 1rem; cursor: pointer;
-      font-weight: 600;
-    }
+.cta-btn{
+  margin-top:2.5rem;
+  padding:1rem 2.4rem;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(135deg,var(--orange),var(--red));
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
 
-    .message-sent {
-      color: var(--purple); font-weight: 600; margin-top: 1rem;
-      display: none; animation: fadeIn 0.5s ease forwards;
-    }
+/* ================= PRODUCTS ================= */
+.products{
+  padding:6rem 2rem;
+  background:url("Yobid Arkaplan Orta 1.jpeg") no-repeat center/cover;
+  text-align:center;
+}
 
-    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+.products h2{
+  font-size:2.4rem;
+  margin-bottom:3rem;
+  background:linear-gradient(135deg,var(--purple),var(--orange),var(--red));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    /* FOOTER */
-    footer {
-      text-align: center; padding: 3rem 2rem; color: var(--text-dark);
-      font-size: 0.9rem; background:url(Krem\ Arka\ Plan.jpeg) no-repeat center/cover; 
-      font-weight: 600; position: relative;
-      overflow: hidden;
-    }
+.product{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:2rem;
+  margin-bottom:4rem;
+  flex-wrap:wrap;
+}
 
-    @media(max-width:768px){
-      .product{flex-direction:column !important;text-align:center;}
-      .hero-images img { width: 250px; }
-    }
-  </style>
+.product:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.product img{
+  width:320px;
+  border-radius:40px;
+}
+
+.product-text{
+  max-width:460px;
+  text-align:left;
+}
+
+.product-text h3{
+  font-size:1.8rem;
+  margin-bottom:.8rem;
+  background:linear-gradient(135deg,var(--purple),var(--red));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.product-text button{
+  margin-top:1rem;
+  padding:.8rem 1.8rem;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(135deg,var(--purple),var(--orange));
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ================= CONTACT ================= */
+.contact{
+  padding:6rem 2rem;
+  background:url("Yobid Arkaplan Bitiş.jpeg") no-repeat center/cover;
+  text-align:center;
+  color:#fff;
+}
+
+.contact h2{
+  font-size:2.4rem;
+  color:var(--purple);
+}
+
+.contact button{
+  margin-top:2rem;
+  padding:1rem 2.5rem;
+  border:none;
+  border-radius:40px;
+  background:#fff;
+  color:var(--purple);
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ================= POPUP ================= */
+.popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.popup-content{
+  background:#fff;
+  padding:2rem;
+  border-radius:20px;
+  max-width:420px;
+  width:90%;
+  text-align:center;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  padding:3rem 1rem;
+  text-align:center;
+  font-weight:600;
+  background:url("Krem Arka Plan.jpeg") no-repeat center/cover;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+
+  nav{
+    flex-direction:column;
+    padding:.8rem 1rem;
+  }
+
+  nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:.6rem;
+  }
+
+  .hero{
+    height:auto;
+    padding-top:8rem;
+    padding-bottom:3rem;
+  }
+
+  .hero h1{
+    font-size:2.1rem;
+  }
+
+  .hero-images img{
+    width:220px;
+  }
+
+  .product{
+    flex-direction:column !important;
+    text-align:center;
+  }
+
+  .product-text{
+    text-align:center;
+  }
+
+  .product img{
+    width:260px;
+  }
+
+  .popup-content{
+    max-width:360px;
+  }
+}
+
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem;}
+  .hero-images img{width:190px;}
+}
+</style>
 </head>
 
 <body>
 
-  <nav>
-    <div class="logo">
-      <img src="yobid-logo.png" alt="YoBid Logo">
+<nav>
+  <div class="logo">
+    <img src="yobid-logo.png">
+  </div>
+  <ul>
+    <li><a href="#hero">Ana Sayfa</a></li>
+    <li><a href="#products">Ürünler</a></li>
+    <li><a href="#contact">İletişim</a></li>
+    <li><a href="postbiotic.html">Postbiotic</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <h1>Doğal Yoğurt Kaplı Meyve Küpleri</h1>
+  <p>YoBid – doğallığı ve enerjiyi bir araya getirir</p>
+  <div class="hero-images">
+    <img src="yobid-cilek.jpeg">
+    <img src="yobid-seftali-mango.jpeg">
+    <img src="yobid-orman-meyveleri.jpeg">
+  </div>
+  <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+    Ürünleri Keşfet
+  </button>
+</section>
+
+<section class="products" id="products">
+  <h2>Lezzet Üçlüsü</h2>
+
+  <div class="product">
+    <img src="yobid-cilek.jpeg">
+    <div class="product-text">
+      <h3>YoBid Çilek</h3>
+      <p>Kremsi, ferahlatıcı ve doğal</p>
     </div>
-    <ul>
-      <li><a href="#hero">Ana Sayfa</a></li>
-      <li><a href="#products">Ürünler</a></li>
-      <li><a href="#contact">İletişim</a></li>
-      <li><a href="postbiotic.html">Postbiotic</a></li>
-    </ul>
-  </nav>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    
-    <h1>Doğal Yoğurt Kaplı Meyve Küpleri</h1>
-    <p>YoBid – doğallığı, tazeliği ve enerjiyi bir araya getiren yepyeni yoğurt deneyimi!</p>
-    <div class="hero-images">
-      <img src="yobid-cilek.jpeg" alt="YoBid Çilek">
-      <img src="yobid-seftali-mango.jpeg" alt="YoBid Şeftali Mango">
-      <img src="yobid-orman-meyveleri.jpeg" alt="YoBid Orman Meyveleri">
+  <div class="product">
+    <img src="yobid-seftali-mango.jpeg">
+    <div class="product-text">
+      <h3>YoBid Şeftali Mango</h3>
+      <p>Tropikal ferahlık</p>
     </div>
-    <button class="cta-btn" onclick="scrollToSection('products')">Ürünleri Keşfet</button>
-  </section>
+  </div>
 
-  <!-- PRODUCTS -->
-  <section class="products" id="products">
-    <h2>Lezzet Üçlüsü</h2>
-
-    <div class="product">
-      <img src="yobid-cilek.jpeg" alt="Çilekli YoBid">
-      <div class="product-text">
-        <h3>YoBid Çilek</h3>
-        <p>Kremsi dokusu, taze çilek parçaları ve ferahlatıcı aromasıyla YoBid Çilek, mutluluğun en tatlı hali. Her kaşıkta gerçek meyvenin enerjisini hissedersin!</p>
-        <button onclick="openPopup('popupCilek')">Keşfet</button>
-      </div>
+  <div class="product">
+    <img src="yobid-orman-meyveleri.jpeg">
+    <div class="product-text">
+      <h3>YoBid Orman Meyveleri</h3>
+      <p>Doğanın enerjisi</p>
     </div>
+  </div>
+</section>
 
-    <div class="product">
-      <img src="yobid-seftali-mango.jpeg" alt="Şeftali Mango YoBid">
-      <div class="product-text">
-        <h3>YoBid Şeftali Mango</h3>
-        <p>Tropikal tatların birleşimi: Şeftali’nin yumuşaklığı ve Mango’nun egzotik enerjisi! Sıcak yaz günlerinde ferahlığın ta kendisi.</p>
-        <button onclick="openPopup('popupMango')">Keşfet</button>
-      </div>
-    </div>
+<section class="contact" id="contact">
+  <h2>Bizimle İletişime Geç</h2>
+  <button onclick="document.getElementById('contactForm').style.display='flex'">
+    İletişime Geç
+  </button>
+</section>
 
-    <div class="product">
-      <img src="yobid-orman-meyveleri.jpeg" alt="Orman Meyveleri YoBid">
-      <div class="product-text">
-        <h3>YoBid Orman Meyveleri</h3>
-        <p>Ahududu, yaban mersini ve böğürtlenin güçlü aromalarıyla dolu bir lezzet patlaması. Doğanın enerjisini hisset!</p>
-        <button onclick="openPopup('popupBerry')">Keşfet</button>
-      </div>
-    </div>
-  </section>
+<footer>
+© 2025 YoBid – Doğal Yoğurt Kaplı Meyve Küpleri 💜
+</footer>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <h2>Bizimle İletişime Geç</h2>
-    <p>YoBid hakkında soruların mı var? Bize yaz, sana dönelim!</p>
-    <button onclick="openForm()">İletişime Geç</button>
-  </section>
-
-  <footer>© 2025 YoBid – Doğal Yoğurt Kaplı Meyve Küpleri 💜🧡❤️</footer>
-
-  <!-- POPUPS -->
-  <div class="popup" id="contactForm">
-    <div class="popup" id="kvkkPopup">
-  <div class="popup-content" style="max-width:500px;" onclick="event.stopPropagation()">
-    <h3>KVKK Bildirimi</h3>
-    <p style="font-size:0.95rem; line-height:1.5; color:#444;">
-      Kişisel verileriniz 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca 
-      2B Gıda Ve İçecek tarafından korunmaktadır.  
-      Bu form aracılığıyla paylaştığınız bilgiler yalnızca tarafınıza geri dönüş sağlanması amacıyla 
-      işlenecek olup, üçüncü kişilerle paylaşılmayacaktır.  
-      KVKK kapsamında dilediğiniz zaman verilerinizin silinmesini veya düzeltilmesini talep edebilirsiniz.
-    </p>
-    <button onclick="closePopup('kvkkPopup')" style="background:#ddd;color:#333;margin-top:1rem;">Kapat</button>
+<div class="popup" id="contactForm" onclick="this.style.display='none'">
+  <div class="popup-content" onclick="event.stopPropagation()">
+    <h3>İletişim</h3>
+    <input type="email" placeholder="E-posta" style="width:100%;margin:.6rem 0;padding:.6rem;">
+    <textarea placeholder="Mesaj" style="width:100%;height:100px;padding:.6rem;"></textarea>
+    <button style="margin-top:1rem">Gönder</button>
   </div>
 </div>
-    <div class="popup-content" onclick="event.stopPropagation()">
-      <h3>İletişim Formu</h3>
-      <input type="email" id="emailInput" placeholder="E-posta adresiniz" required>
-      <textarea id="messageInput" placeholder="Mesajınızı buraya yazın..."></textarea>
 
-  <div style="text-align:left; font-size:0.9rem; margin-top:0.8rem;">
-    <label>
-      <input type="checkbox" id="kvkkCheckbox" required>
-      <span>
-        KVKK kapsamında 
-        <a href="#" onclick="openPopup('kvkkPopup')" style="color:var(--purple); text-decoration:underline;">
-          kişisel verilerimin işlenmesini
-        </a> 
-      onaylıyorum.
-      </span>
-    </label>
-  </div>
-
-      <button onclick="sendMessage()">Gönder</button>
-      <button onclick="closePopup('contactForm')" 
-              style="background:#ddd;color:#333;margin-top:0.6rem;">Kapat</button>
-
-      <div class="message-sent" id="sentMessage">Mesajınız gönderildi 💌</div>
-    </div>
-  </div>
-
-  <script>
-    // Open any popup
-    function openPopup(id) {
-      const popup = document.getElementById(id);
-      popup.style.display = 'flex';
-      // Allow closing by clicking outside
-      popup.onclick = () => closePopup(id);
-    }
-
-    // Close popup
-    function closePopup(id) {
-      document.getElementById(id).style.display = 'none';
-    }
-
-    // Open contact form
-    function openForm() {
-      document.getElementById('contactForm').style.display = 'flex';
-    }
-
-    // Send message with validation
-    function sendMessage() {
-      const email = document.getElementById('emailInput').value.trim();
-      const msg = document.getElementById('messageInput').value.trim();
-      const kvkk = document.getElementById('kvkkCheckbox').checked;
-
-      if (!email || !msg) {
-        alert('Lütfen e-posta ve mesajınızı girin.');
-        return;
-      }
-      if (!kvkk) {
-        alert('Lütfen KVKK onay kutusunu işaretleyin.');
-        return;
-      }
-
-      document.getElementById('sentMessage').style.display = 'block';
-      setTimeout(() => {
-        closePopup('contactForm');
-        document.getElementById('sentMessage').style.display = 'none';
-        document.getElementById('messageInput').value = '';
-        document.getElementById('emailInput').value = '';
-        document.getElementById('kvkkCheckbox').checked = false;
-      }, 2000);
-    }
-
-    // Smooth scroll for hero button
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
 </body>
 </html>
