@@ -77,6 +77,7 @@
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
       background: url(yobid-arkaplan-baslangıc.jpeg) no-repeat top/cover;
       opacity: 0.95; z-index: 0;
+      pointer-events: none;
     }
 
     @keyframes wave { 
@@ -245,6 +246,8 @@
   font-size:2rem;
   cursor:pointer;
   color:var(--purple);
+  position: relative;
+  z-index: 2001;
 }
 
 /* Açılan mobil menü */
@@ -268,6 +271,25 @@
 
 /* ================= MOBILE FIX ================= */
 @media(max-width:768px){
+  .hamburger{
+  display:block !important;
+}
+  .hero{
+  height:auto;
+  min-height:100vh;
+  padding-top:7rem;
+  padding-bottom:4rem;
+}
+
+.hero h1{
+  font-size:2.2rem;
+  line-height:1.2;
+}
+
+.hero p{
+  font-size:1rem;
+  padding:0 1rem;
+}
 
   /* desktop menüyü gizle */
   nav ul{
