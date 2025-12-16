@@ -8,17 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ================= RESET ================= */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 html,body{overflow-x:hidden;scroll-behavior:smooth}
 
-/* COLORS */
+/* ================= COLORS ================= */
 :root{
 --purple:#d04eff;
 --orange:#ff8c2f;
 --red:#ff3045;
 }
 
-/* ================= NAVBAR ================= */
+/* ================= NAVBAR (DESKTOP ORJİNAL) ================= */
 nav{
 position:fixed;
 top:0;left:0;
@@ -28,18 +29,33 @@ backdrop-filter:blur(12px);
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:.8rem 2rem;
+padding:.8rem 3rem;
 z-index:1000;
 }
-nav img{height:60px}
-nav ul{display:flex;gap:1.5rem;list-style:none}
+
+nav img{height:65px}
+
+nav ul{
+display:flex;
+gap:2rem;
+list-style:none;
+}
+
 nav a{
 text-decoration:none;
 font-weight:600;
 color:var(--purple);
+padding:.6rem 1.2rem;
+border-radius:30px;
+transition:.3s;
 }
 
-/* Hamburger */
+nav a:hover{
+background:linear-gradient(135deg,var(--orange),var(--red));
+color:#fff;
+}
+
+/* ================= HAMBURGER (SADE) ================= */
 .hamburger{
 display:none;
 font-size:2rem;
@@ -47,7 +63,7 @@ cursor:pointer;
 color:var(--purple);
 }
 
-/* Mobile Menu */
+/* ================= MOBILE MENU (SADE – GÖRSELSİZ) ================= */
 .mobile-menu{
 position:fixed;
 top:0;left:-100%;
@@ -60,72 +76,82 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 gap:2rem;
-transition:.4s;
+transition:.35s ease;
 }
+
 .mobile-menu a{
 font-size:1.6rem;
-color:var(--purple);
 font-weight:600;
+color:var(--purple);
 text-decoration:none;
 }
+
 .mobile-menu.active{left:0}
 
-/* ================= HERO ================= */
+/* ================= HERO (ORJİNAL) ================= */
 .hero{
 min-height:100vh;
 padding:8rem 1rem 4rem;
 text-align:center;
 background:url("Yobid Arkaplan başlangıç.jpeg") no-repeat center/cover;
 }
+
 .hero h1{
 font-size:3rem;
 color:var(--purple);
 }
+
 .hero p{
 max-width:600px;
 margin:1rem auto 2rem;
 font-size:1.1rem;
 }
+
 .hero-images{
 display:flex;
 gap:2rem;
 justify-content:center;
 flex-wrap:wrap;
 }
+
 .hero-images img{
-width:260px;
+width:280px;
 border-radius:35px;
 cursor:pointer;
 transition:.3s;
 }
-.hero-images img:hover{
-transform:scale(1.05);
-}
 
-/* ================= PRODUCTS ================= */
+.hero-images img:hover{transform:scale(1.05)}
+
+/* ================= PRODUCTS (DESKTOP ESKİ HAL) ================= */
 .products{
 padding:6rem 2rem;
 background:url("Yobid Arkaplan Orta 1.jpeg") no-repeat center/cover;
 text-align:center;
 }
+
 .products h2{
 font-size:2.4rem;
 margin-bottom:3rem;
 color:var(--purple);
 }
+
 .product{
 display:flex;
-gap:2rem;
-justify-content:center;
 align-items:center;
+justify-content:center;
+gap:2rem;
 margin-bottom:4rem;
 flex-wrap:wrap;
 }
+
 .product:nth-child(even){flex-direction:row-reverse}
+
 .product img{
-width:300px;
+width:320px;
 border-radius:30px;
 }
+
 .product-text{
 max-width:420px;
 text-align:left;
@@ -134,16 +160,18 @@ text-align:left;
 /* ================= CONTACT ================= */
 .contact{
 padding:6rem 1rem;
-background:url("Yobid Arkaplan Bitiş.jpeg") no-repeat center/cover;
 text-align:center;
+background:url("Yobid Arkaplan Bitiş.jpeg") no-repeat center/cover;
 }
+
 .contact h2{
 font-size:2.2rem;
 color:var(--purple);
 margin-bottom:1.5rem;
 }
+
 .contact button{
-padding:1rem 2.5rem;
+padding:1rem 2.6rem;
 border:none;
 border-radius:40px;
 background:linear-gradient(135deg,var(--orange),var(--red));
@@ -163,11 +191,13 @@ background:url("Krem Arka Plan.jpeg") no-repeat center/cover;
 
 /* ================= MOBILE ================= */
 @media(max-width:768px){
+
 nav ul{display:none}
 .hamburger{display:block}
 
 .hero h1{font-size:2.1rem}
 .hero-images img{width:210px}
+
 }
 </style>
 </head>
@@ -175,7 +205,7 @@ nav ul{display:none}
 <body>
 
 <nav>
-<img src="yobid-logo.png">
+<img src="yobid-logo.png" alt="YoBid">
 <ul>
 <li><a href="#hero">Ana Sayfa</a></li>
 <li><a href="#products">Ürünler</a></li>
@@ -208,7 +238,7 @@ nav ul{display:none}
 <img src="yobid-cilek.jpeg">
 <div class="product-text">
 <h3>YoBid Çilek</h3>
-<p>Kremsi dokusu ve taze çilek aromasıyla ferahlatıcı bir deneyim.</p>
+<p>Kremsi dokusu ve taze çilek aroması.</p>
 </div>
 </div>
 
@@ -216,7 +246,7 @@ nav ul{display:none}
 <img src="yobid-seftali-mango.jpeg">
 <div class="product-text">
 <h3>YoBid Şeftali Mango</h3>
-<p>Tropikal şeftali ve mango uyumu.</p>
+<p>Tropikal lezzetlerin dengesi.</p>
 </div>
 </div>
 
@@ -231,11 +261,11 @@ nav ul{display:none}
 
 <section class="contact" id="contact">
 <h2>Bizimle İletişime Geç</h2>
-<button onclick="alert('İletişim formu buraya bağlanabilir')">İletişime Geç</button>
+<button onclick="alert('İletişim formu bağlanacak')">İletişime Geç</button>
 </section>
 
 <footer>
-© 2025 YoBid – Doğal Yoğurt Kaplı Meyve Küpleri 💜
+© 2025 YoBid
 </footer>
 
 <script>
