@@ -470,54 +470,62 @@
   </div>
 
   <script>
-    // Open any popup
-    function openPopup(id) {
-      const popup = document.getElementById(id);
-      popup.style.display = 'flex';
-      // Allow closing by clicking outside
-      popup.onclick = () => closePopup(id);
-    }
+<script>
+/* ================= POPUP ================= */
+function openPopup(id) {
+  const popup = document.getElementById(id);
+  popup.style.display = 'flex';
+  popup.onclick = () => closePopup(id);
+}
 
-    // Close popup
-    function closePopup(id) {
-      document.getElementById(id).style.display = 'none';
-    }
+function closePopup(id) {
+  document.getElementById(id).style.display = 'none';
+}
 
-    // Open contact form
-    function openForm() {
-      document.getElementById('contactForm').style.display = 'flex';
-    }
+/* ================= CONTACT ================= */
+function openForm() {
+  document.getElementById('contactForm').style.display = 'flex';
+}
 
-    // Send message with validation
-    function sendMessage() {
-      const email = document.getElementById('emailInput').value.trim();
-      const msg = document.getElementById('messageInput').value.trim();
-      const kvkk = document.getElementById('kvkkCheckbox').checked;
+function sendMessage() {
+  const email = document.getElementById('emailInput').value.trim();
+  const msg = document.getElementById('messageInput').value.trim();
+  const kvkk = document.getElementById('kvkkCheckbox').checked;
 
-      if (!email || !msg) {
-        alert('Lütfen e-posta ve mesajınızı girin.');
-        return;
-      }
-      if (!kvkk) {
-        alert('Lütfen KVKK onay kutusunu işaretleyin.');
-        return;
-      }
+  if (!email || !msg) {
+    alert('Lütfen e-posta ve mesajınızı girin.');
+    return;
+  }
+  if (!kvkk) {
+    alert('Lütfen KVKK onay kutusunu işaretleyin.');
+    return;
+  }
 
-      document.getElementById('sentMessage').style.display = 'block';
-      setTimeout(() => {
-        closePopup('contactForm');
-        document.getElementById('sentMessage').style.display = 'none';
-        document.getElementById('messageInput').value = '';
-        document.getElementById('emailInput').value = '';
-        document.getElementById('kvkkCheckbox').checked = false;
-      }, 2000);
-    }
+  document.getElementById('sentMessage').style.display = 'block';
 
-    // Smooth scroll for hero button
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-    <div class="hamburger" onclick="openMobileMenu()">☰</div>
+  setTimeout(() => {
+    closePopup('contactForm');
+    document.getElementById('sentMessage').style.display = 'none';
+    document.getElementById('messageInput').value = '';
+    document.getElementById('emailInput').value = '';
+    document.getElementById('kvkkCheckbox').checked = false;
+  }, 2000);
+}
+
+/* ================= SCROLL ================= */
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ================= MOBILE MENU ================= */
+function openMobileMenu(){
+  document.getElementById("mobileMenu").style.display = "block";
+}
+
+function closeMobileMenu(){
+  document.getElementById("mobileMenu").style.display = "none";
+}
+</script>
   <script>
 </body>
 </html> 
