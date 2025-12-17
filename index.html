@@ -468,55 +468,27 @@
       <div class="message-sent" id="sentMessage">Mesajınız gönderildi 💌</div>
     </div>
   </div>
-
-  <script>
-/* ================= POPUP ================= */
-function openPopup(id) {
-  const popup = document.getElementById(id);
-  popup.style.display = 'flex';
-  popup.onclick = () => closePopup(id);
+  
+    <script>
+function openPopup(id){
+  document.getElementById(id).style.display = "flex";
 }
 
-function closePopup(id) {
-  document.getElementById(id).style.display = 'none';
+function closePopup(id){
+  document.getElementById(id).style.display = "none";
 }
 
-/* ================= CONTACT ================= */
-function openForm() {
-  document.getElementById('contactForm').style.display = 'flex';
+function openForm(){
+  openPopup("contactForm");
 }
 
-function sendMessage() {
-  const email = document.getElementById('emailInput').value.trim();
-  const msg = document.getElementById('messageInput').value.trim();
-  const kvkk = document.getElementById('kvkkCheckbox').checked;
-
-  if (!email || !msg) {
-    alert('Lütfen e-posta ve mesajınızı girin.');
-    return;
+function scrollToSection(id){
+  const el = document.getElementById(id);
+  if(el){
+    el.scrollIntoView({behavior:"smooth"});
   }
-  if (!kvkk) {
-    alert('Lütfen KVKK onay kutusunu işaretleyin.');
-    return;
-  }
-
-  document.getElementById('sentMessage').style.display = 'block';
-
-  setTimeout(() => {
-    closePopup('contactForm');
-    document.getElementById('sentMessage').style.display = 'none';
-    document.getElementById('messageInput').value = '';
-    document.getElementById('emailInput').value = '';
-    document.getElementById('kvkkCheckbox').checked = false;
-  }, 2000);
 }
 
-/* ================= SCROLL ================= */
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
-
-/* ================= MOBILE MENU ================= */
 function openMobileMenu(){
   document.getElementById("mobileMenu").style.display = "block";
 }
@@ -524,6 +496,31 @@ function openMobileMenu(){
 function closeMobileMenu(){
   document.getElementById("mobileMenu").style.display = "none";
 }
-  </script>
+
+function sendMessage(){
+  const email = emailInput.value.trim();
+  const msg = messageInput.value.trim();
+  const kvkk = kvkkCheckbox.checked;
+
+  if(!email || !msg){
+    alert("Lütfen tüm alanları doldurun");
+    return;
+  }
+  if(!kvkk){
+    alert("KVKK onayı gerekli");
+    return;
+  }
+
+  sentMessage.style.display = "block";
+
+  setTimeout(()=>{
+    closePopup("contactForm");
+    sentMessage.style.display = "none";
+    emailInput.value="";
+    messageInput.value="";
+    kvkkCheckbox.checked=false;
+  },2000);
+}
+</script>
 </body>
 </html> 
