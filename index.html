@@ -80,6 +80,11 @@
       pointer-events: none;
     }
 
+    .hero-bg,
+      .hero::after{
+      pointer-events:none;
+    }
+
     @keyframes wave { 
       0% {transform: scale(1);} 
       100% {transform: scale(1.1);} 
@@ -237,6 +242,29 @@
     }
 
     @media(max-width:768px){
+      .hero{
+  justify-content:flex-start;
+  padding-top:9rem;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.85),
+    rgba(255,255,255,0.6)
+  );
+  z-index:1;
+}
+
+.hero h1,
+.hero p,
+.cta-btn{
+  position:relative;
+  z-index:2;
+}
       .product{flex-direction:column !important;text-align:center;}
       .hero-images img { width: 250px; }
     }
@@ -326,13 +354,13 @@
       <img src="yobid-logo.png" alt="YoBid Logo">
     </div>
     <ul>
-      <!-- MOBILE HAMBURGER -->
-    <div class="hamburger" onclick="openMobileMenu()">☰</div>
       <li><a href="#hero">Ana Sayfa</a></li>
       <li><a href="#products">Ürünler</a></li>
       <li><a href="#contact">İletişim</a></li>
       <li><a href="postbiotic.html">Postbiotic</a></li>
     </ul>
+
+    <div class="hamburger" onclick="openMobileMenu()">☰</div>
   </nav>
   <!-- MOBILE MENU PANEL -->
    <div class="mobile-menu" id="mobileMenu">
@@ -489,14 +517,7 @@
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
-    <script>
-  function openMobileMenu(){
-    document.getElementById("mobileMenu").style.display = "block";
-    }
-
-  function closeMobileMenu(){
-    document.getElementById("mobileMenu").style.display = "none";
-    }
-  </script>
+    <div class="hamburger" onclick="openMobileMenu()">☰</div>
+  <script>
 </body>
 </html> 
